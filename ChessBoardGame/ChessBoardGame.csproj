@@ -80,6 +80,11 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\BoardManager.cs" />
     <Compile Include="Assets\Scripts\Minion1.cs" />
+    <Compile Include="Assets\Scripts\Minion2.cs" />
+    <Compile Include="Assets\Scripts\Minion3.cs" />
+    <Compile Include="Assets\Scripts\Minion4.cs" />
+    <Compile Include="Assets\Scripts\Minion5.cs" />
+    <Compile Include="Assets\Scripts\Minion6.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

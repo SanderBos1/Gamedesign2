@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33541856929349778}
   - component: {fileID: 65208344205276934}
   - component: {fileID: 23782864743792342}
+  - component: {fileID: 114287911862784538}
   m_Layer: 0
   m_Name: Minion11
   m_TagString: Untagged
@@ -93,3 +94,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114287911862784538
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1600229023746726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7cbfd7e5c9d0d349a09b230366e90b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBottomteam: 0
