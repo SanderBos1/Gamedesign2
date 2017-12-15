@@ -5,5 +5,4 @@ using UnityEngine;
 public class Minion5 : Movement {
 
 	
-	
 }

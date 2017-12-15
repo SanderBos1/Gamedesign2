@@ -5,6 +5,8 @@ using UnityEngine;
 public class BoardManager : MonoBehaviour
 {
 
+    public static BoardManager Instance { set; get; }
+    public bool[,] allowedMoves { set; get;}
     public Movement[,] Cards {set; get;}
     private Movement selectedCard;
 
@@ -22,7 +24,9 @@ public class BoardManager : MonoBehaviour
     public bool isBottomTurn = true;
     private void Start()
     {
+        Instance = this;
         SpawnAllMinions();
+
     }
 
     private void Update()
@@ -56,18 +60,22 @@ public class BoardManager : MonoBehaviour
         if (Cards[x, y].isBottomteam!= isBottomTurn)
         return;
 
+        allowedMoves = Cards[x, y].PossibleMove();
         selectedCard = Cards[x, y];
+        BoardHighLights.Instance.HighlightAllowedMoves(allowedMoves);
     }
 
     private void MoveCards(int x, int y)
     {
-        if (selectedCard.PossibleMove(x, y))
+        if (allowedMoves[x, y])
         {
             Cards[selectedCard.CurrentX, selectedCard.CurrentY] = null;
             selectedCard.transform.position = GetTileCenter(x, y);
+            selectedCard.SetPosition(x, y);
             Cards[x, y] = selectedCard;
             isBottomTurn = !isBottomTurn;
         }
+        BoardHighLights.Instance.HideHighlights();
         selectedCard = null;
     }
     //mousepointing
