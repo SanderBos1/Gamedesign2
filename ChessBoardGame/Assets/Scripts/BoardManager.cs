@@ -69,6 +69,20 @@ public class BoardManager : MonoBehaviour
     {
         if (allowedMoves[x, y])
         {
+            Movement c = Cards[x, y];
+
+            if(c != null && c.isBottomteam != isBottomTurn)
+            {
+                //destory a card
+                activeCards.Remove(c.gameObject);
+                Destroy(c.gameObject);
+                //if it is the king
+                if(c.GetType () == typeof(Minion1))
+                {
+                    //end game
+                    return;
+                }
+            }
             Cards[selectedCard.CurrentX, selectedCard.CurrentY] = null;
             selectedCard.transform.position = GetTileCenter(x, y);
             selectedCard.SetPosition(x, y);
@@ -114,55 +128,41 @@ public class BoardManager : MonoBehaviour
     private void SpawnAllMinions()
     {
 
-         activeCards = new List<GameObject>();
+        activeCards = new List<GameObject>();
         Cards = new Movement[8, 8];
         //spawn the bottom team
 
         //king
-        SpawnMinions(0,3,0);
+        SpawnMinions(0, 3, 0);
 
         //Queen
         SpawnMinions(1, 4, 0);
 
         //Rooks
-        SpawnMinions(2,0,0);
-        SpawnMinions(2,7,0);
+        SpawnMinions(2, 0, 0);
+        SpawnMinions(2, 7, 0);
 
         //Bishops
-        SpawnMinions(3,2,0);
-        SpawnMinions(3,5,0);
+        SpawnMinions(3, 2, 0);
+        SpawnMinions(3, 5, 0);
 
         //Knights
-        SpawnMinions(4,1,0);
-        SpawnMinions(4,6,0);
+        SpawnMinions(4, 1, 0);
+        SpawnMinions(4, 6, 0);
 
         //Pawns
-        for (int i = 0; i < 8; i++)
-            SpawnMinions(5,i,1);
-        
+            SpawnMinions(5, 1, 7);
+
         //upper team
 
         //king
-        SpawnMinions(6,3,7);
+        SpawnMinions(6, 3, 7);
 
         //Queen
-        SpawnMinions(7,4,7);
+        SpawnMinions(7, 4, 7);
 
         //Rooks
-        SpawnMinions(8,0,7);
-        SpawnMinions(8,7,7);
-
-        //Bishops
-        SpawnMinions(9,2,7);
-        SpawnMinions(9,5,7);
-
-        //Knights
-        SpawnMinions(10,1,7);
-        SpawnMinions(10,6,7);
-
-        //Pawns
-        for (int i = 0; i < 8; i++)
-            SpawnMinions(11,i,6);
+        SpawnMinions(8, 0, 7);
     }
 
     private Vector3 GetTileCenter(int x, int y)
