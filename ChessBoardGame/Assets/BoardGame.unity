@@ -137,18 +137,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPrefabs:
-  - {fileID: 1460783479012390, guid: 6028fbb35bf95334a82f65d45d73a77c, type: 2}
-  - {fileID: 1218337915122950, guid: f0505f0f0b8000943aad8b383dcfcf86, type: 2}
-  - {fileID: 1408826772086542, guid: b617a98991d90144d98f4d01c9b2378b, type: 2}
-  - {fileID: 1601469330152582, guid: 18cb21e636836534db99edcfe8016ad1, type: 2}
-  - {fileID: 1810616484256638, guid: 16d93e2a83b968f419636cbf0c50b7a7, type: 2}
-  - {fileID: 1507402527079536, guid: e8a20e4048a92254aae84ca41e391430, type: 2}
-  - {fileID: 1887515110525372, guid: fc3e4bf5e22792e458ff8d8a7739929e, type: 2}
-  - {fileID: 1710913510840274, guid: c0d85ce35c7c4c640b7874ac611c5914, type: 2}
-  - {fileID: 1452995801049010, guid: bef64c3defef5724b86aac82af00a93b, type: 2}
-  - {fileID: 1012162180872054, guid: 491045b00390bba47884541fb2178c4a, type: 2}
-  - {fileID: 1600229023746726, guid: 9d2e8264e6b9024409740cfde0485d6a, type: 2}
-  - {fileID: 1020319323101608, guid: 79da3929bf8579a4aa1f93c6b4aef3d9, type: 2}
+  - {fileID: 1747651803072404, guid: cf387f41791b06e44abd802b9b9a1a31, type: 2}
+  - {fileID: 1586715330392044, guid: 65e06ea7db505294d8d3358753734652, type: 2}
+  - {fileID: 1955636287266384, guid: f8c6786feb2c63b40a01bfa623869407, type: 2}
+  - {fileID: 1011953261956952, guid: a768d0a3b7267814393c825496aa7c2b, type: 2}
+  - {fileID: 1124101475327270, guid: 6405aa69a286f1d4c9c0c4003660eba5, type: 2}
+  - {fileID: 1382035046367028, guid: 83e2d437d75ac5446aea692ab6f7d3ee, type: 2}
+  - {fileID: 1555591442120740, guid: 7d329138ef4cef642bd18501821cd110, type: 2}
+  - {fileID: 1937688079622996, guid: e0ba35ea4ef800440b5ee1ec9b195a88, type: 2}
   isBottomTurn: 1
 --- !u!4 &189516553
 Transform:

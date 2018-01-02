@@ -132,39 +132,31 @@ public class BoardManager : MonoBehaviour
         Cards = new Movement[8, 8];
         //spawn the bottom team
 
-        //king
+        //Dennis
         SpawnMinions(0, 3, 0);
 
-        //Queen
+        //Death_Knight
         SpawnMinions(1, 4, 0);
 
-        //Rooks
+        //Necromancer
         SpawnMinions(2, 0, 0);
-        SpawnMinions(2, 7, 0);
 
-        //Bishops
+        //Skeleton Archer
         SpawnMinions(3, 2, 0);
-        SpawnMinions(3, 5, 0);
 
-        //Knights
-        SpawnMinions(4, 1, 0);
-        SpawnMinions(4, 6, 0);
+        //King Leopold
+        SpawnMinions(4, 1, 7);
 
-        //Pawns
-            SpawnMinions(5, 1, 7);
+        //Enchantress
+        SpawnMinions(5, 2, 7);
 
-        //upper team
-
-        //king
+        //Artic_Archer
         SpawnMinions(6, 3, 7);
 
-        //Queen
+        //Warrior 1
         SpawnMinions(7, 4, 7);
 
-        //Rooks
-        SpawnMinions(8, 0, 7);
     }
-
     private Vector3 GetTileCenter(int x, int y)
     {
         Vector3 origin = Vector3.zero;

@@ -105,4 +105,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1646f9e4507977147b66e97114d6530b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBottomteam: 1
+  isBottomteam: 0
