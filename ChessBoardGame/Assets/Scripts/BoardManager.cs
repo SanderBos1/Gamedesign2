@@ -77,7 +77,7 @@ public class BoardManager : MonoBehaviour
                 activeCards.Remove(c.gameObject);
                 Destroy(c.gameObject);
                 //if it is the king
-                if(c.GetType () == typeof(Minion1))
+                if(c.GetType () == typeof(Dennis))
                 {
                     //end game
                     return;

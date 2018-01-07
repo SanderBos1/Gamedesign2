@@ -78,15 +78,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Artic_Archer.cs" />
     <Compile Include="Assets\Scripts\BoardHighLights.cs" />
     <Compile Include="Assets\Scripts\BoardManager.cs" />
-    <Compile Include="Assets\Scripts\Minion1.cs" />
-    <Compile Include="Assets\Scripts\Minion2.cs" />
-    <Compile Include="Assets\Scripts\Minion3.cs" />
-    <Compile Include="Assets\Scripts\Minion4.cs" />
-    <Compile Include="Assets\Scripts\Minion5.cs" />
-    <Compile Include="Assets\Scripts\Minion6.cs" />
+    <Compile Include="Assets\Scripts\Death_Knight.cs" />
+    <Compile Include="Assets\Scripts\Dennis.cs" />
+    <Compile Include="Assets\Scripts\Enchantress.cs" />
+    <Compile Include="Assets\Scripts\King_Leopold.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\Necromancer.cs" />
+    <Compile Include="Assets\Scripts\Skeleton_Archer.cs" />
+    <Compile Include="Assets\Scripts\Warrior.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
