@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5c870840d8864409751c92a73531d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightPrefab: {fileID: 1824637650508106, guid: 0f14819629fcda2438a3cee28c192447,
+  highlightPrefab: {fileID: 1384615685831460, guid: 0f14819629fcda2438a3cee28c192447,
     type: 2}
 --- !u!1 &318658920
 GameObject:
