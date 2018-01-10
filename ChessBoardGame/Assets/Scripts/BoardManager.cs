@@ -2,8 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoardManager : MonoBehaviour
-{
+public class BoardManager : MonoBehaviour{
+
+    public int damage;
+
+    public List<int> Artic_Archer = new List<int> { 7, 3, 3 };
+    public List<int> Dennis = new List<int> { 20, 5, 5 };
+    public List<int> Death_Knight = new List<int> { 8, 3, 3 };
+    public List<int> Enchantress = new List<int> { 6, 4, 2 };
+    public List<int> King_Leopold = new List<int> { 20, 5, 5 };
+    public List<int> Necromancer = new List<int> { 7, 3, 2 };
+    public List<int> Skeleton_Archer = new List<int> { 5, 2, 1 };
+    public List<int> Warrior = new List<int> { 9, 3, 4 };
 
     public static BoardManager Instance { set; get; }
     public bool[,] allowedMoves { set; get;}
@@ -73,6 +83,161 @@ public class BoardManager : MonoBehaviour
 
             if(c != null && c.isBottomteam != isBottomTurn)
             {
+                //From here starts health manage things
+
+                //Find the attacker and set the damage to the attacker's corresponding damage
+                var attacker = Cards[selectedCard.CurrentX, selectedCard.CurrentY];
+
+                if(attacker.GetType() == typeof(Artic_Archer)){
+                    damage = Artic_Archer[1];
+                }
+
+                else if (attacker.GetType() == typeof(Dennis)){
+                    damage = Dennis[1];
+                }
+
+                else if (attacker.GetType() == typeof(Death_Knight)){
+                    damage = Death_Knight[1];
+                }
+
+                else if (attacker.GetType() == typeof(Enchantress)){
+                    damage = Enchantress[1];
+                }
+
+                else if (attacker.GetType() == typeof(King_Leopold)){
+                    damage = King_Leopold[1];
+                }
+
+                else if (attacker.GetType() == typeof(Necromancer)){
+                    damage = Necromancer[1];
+                }
+
+                else if (attacker.GetType() == typeof(Skeleton_Archer)){
+                    damage = Skeleton_Archer[1];
+                }
+
+                else if (attacker.GetType() == typeof(Warrior)){
+                    damage = Warrior[1];
+                }
+
+                //Now find the victim
+                if (c.GetType() == typeof(Artic_Archer)){
+                    if(dodge(Artic_Archer[2]) == false){
+                        Artic_Archer[0] = Artic_Archer[0] - damage;
+                        Debug.Log("Artic_Archer new health: " + Artic_Archer[0]);
+
+                        if (Artic_Archer[0] <= 0){
+                            Debug.Log("Victim died");
+                            //remove component
+                            activeCards.Remove(c.gameObject);
+                            Destroy(c.gameObject);
+                        }
+                    }
+                }
+
+                else if (c.GetType() == typeof(Death_Knight)){
+                    if (dodge(Death_Knight[2]) == false){
+                        Death_Knight[0] = Death_Knight[0] - damage;
+                        Debug.Log("new health: " + Death_Knight[0]);
+
+                        if (Death_Knight[0] <= 0){
+                            Debug.Log("Victim died");
+                            //remove component
+                            activeCards.Remove(c.gameObject);
+                            Destroy(c.gameObject);
+                        }
+                    }
+                }
+
+                else if (c.GetType() == typeof(Enchantress)){
+                    if (dodge(Enchantress[2]) == false){
+                        Enchantress[0] = Enchantress[0] - damage;
+                        Debug.Log("new health: " + Enchantress[0]);
+
+                        if (Enchantress[0] <= 0){
+                            Debug.Log("Victim died");
+                            //remove component
+                            activeCards.Remove(c.gameObject);
+                            Destroy(c.gameObject);
+                        }
+                    }
+                }
+
+                else if (c.GetType() == typeof(Necromancer)){
+                    if (dodge(Necromancer[2]) == false){
+                        Necromancer[0] = Necromancer[0] - damage;
+
+                        if (Necromancer[0] <= 0){
+                            Debug.Log("Victim died");
+                            //remove component
+                            activeCards.Remove(c.gameObject);
+                            Destroy(c.gameObject);
+                        }
+                    }
+                }
+
+                else if (c.GetType() == typeof(Skeleton_Archer)){
+                    if (dodge(Skeleton_Archer[2]) == false){
+                        Skeleton_Archer[0] = Skeleton_Archer[0] - damage;
+
+                        if (Skeleton_Archer[0] <= 0){
+                            Debug.Log("Victim died");
+                            //remove component
+                            activeCards.Remove(c.gameObject);
+                            Destroy(c.gameObject);
+                        }
+                    }
+                }
+
+                else if (c.GetType() == typeof(Warrior)){
+                    if (dodge(Warrior[2]) == false){
+                        Warrior[0] = Warrior[0] - damage;
+
+                        if (Warrior[0] <= 0){
+                            Debug.Log("Victim died");
+                            //remove component
+                            activeCards.Remove(c.gameObject);
+                            Destroy(c.gameObject);
+                        }
+                    }
+                }
+
+                else if (c.GetType() == typeof(Dennis)){
+                    if (dodge(Dennis[2]) == false){
+                        Dennis[0] = Dennis[0] - damage;
+                        Debug.Log("Dennis new health: " + Dennis[0]);
+
+                        if (Dennis[0] <= 0){
+                            Debug.Log("Victim died, GAME ENDS");
+                            activeCards.Remove(c.gameObject);
+                            Destroy(c.gameObject);
+                            //GAME ENDS
+                            return;
+                        }
+                    }
+
+                }
+
+                else if (c.GetType() == typeof(King_Leopold)){
+                    if (dodge(King_Leopold[2]) == false){
+                        King_Leopold[0] = King_Leopold[0] - damage;
+                        Debug.Log("King Leopold new health: " + King_Leopold[0]);
+
+                        if (King_Leopold[0] <= 0){
+                            Debug.Log("Victim died, GAME ENDS");
+                            activeCards.Remove(c.gameObject);
+                            Destroy(c.gameObject);
+                            //GAME ENDS
+                            return;
+                        }
+                    }
+                }
+
+
+
+                //END OF HEALTH MANAGE
+
+                /*REMOVE THIS PART LATER, IT IS NOT NEEDED ANY MORE
                 //destory a card
                 activeCards.Remove(c.gameObject);
                 Destroy(c.gameObject);
@@ -82,16 +247,38 @@ public class BoardManager : MonoBehaviour
                     //end game
                     return;
                 }
+                */
+                isBottomTurn = !isBottomTurn;
             }
-            Cards[selectedCard.CurrentX, selectedCard.CurrentY] = null;
-            selectedCard.transform.position = GetTileCenter(x, y);
-            selectedCard.SetPosition(x, y);
-            Cards[x, y] = selectedCard;
-            isBottomTurn = !isBottomTurn;
+
+            else {
+                Cards[selectedCard.CurrentX, selectedCard.CurrentY] = null;
+                selectedCard.transform.position = GetTileCenter(x, y);
+                selectedCard.SetPosition(x, y);
+                Cards[x, y] = selectedCard;
+                isBottomTurn = !isBottomTurn;
+            }
         }
         BoardHighLights.Instance.HideHighlights();
         selectedCard = null;
     }
+
+    //calcutales if victim dodges incoming attack and returns true if it did
+    private bool dodge(int defence){
+
+        int dodge = UnityEngine.Random.Range(1, 10);
+        if (dodge < defence){
+            //the victim dodged the attack
+            Debug.Log("Victim dodged!");
+            return true;
+        }
+
+        else{
+            return false;
+        }
+    }
+
+
     //mousepointing
     private void UpdateSelection()
     {
