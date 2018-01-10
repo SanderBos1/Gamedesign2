@@ -162,6 +162,7 @@ public class BoardManager : MonoBehaviour
         Vector3 origin = Vector3.zero;
         origin.x += (TILE_SIZE * x) + TILE_OFFSET;
         origin.z += (TILE_SIZE * y) + TILE_OFFSET;
+        origin.y = 0.6f;
         return origin;
     }
     //draws chessboard

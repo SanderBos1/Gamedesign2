@@ -19,7 +19,7 @@ public class Warrior: Movement {
         {
             for (int k = 0; k < 3; k++)
             {
-                if (i > 0 || i < 8)
+                if (i > 0 && i < 8)
                 {
                     c = BoardManager.Instance.Cards[i, j];
                     if (c == null)
@@ -30,24 +30,7 @@ public class Warrior: Movement {
                 i++;
             }
         }
-        i = CurrentX - 2;
-        j = CurrentY + 2;
-        if (CurrentY != 7)
-        {
-            for (int k = 0; k < 3; k++)
-            {
-                if (i > 0 || i < 8)
-                {
-                    c = BoardManager.Instance.Cards[i, j];
-                    if (c == null)
-                        r[i, j] = true;
-                    else if (isBottomteam != c.isBottomteam)
-                        r[i, j] = true;
-                }
-                i++;
-            }
-        }
-
+   
 
         //Bottom side
         i = CurrentX - 1;
@@ -56,7 +39,7 @@ public class Warrior: Movement {
         {
             for (int k = 0; k < 3; k++)
             {
-                if (i > 0 || i < 8)
+                if (i > 0 && i < 8)
                 {
                     c = BoardManager.Instance.Cards[i, j];
                     if (c == null)
@@ -67,23 +50,7 @@ public class Warrior: Movement {
                 i++;
             }
         }
-        i = CurrentX - 2;
-        j = CurrentY - 2;
-        if (CurrentY != 0)
-        {
-            for (int k = 0; k < 3; k++)
-            {
-                if (i > 0 || i < 8)
-                {
-                    c = BoardManager.Instance.Cards[i, j];
-                    if (c == null)
-                        r[i, j] = true;
-                    else if (isBottomteam != c.isBottomteam)
-                        r[i, j] = true;
-                }
-                i++;
-            }
-        }
+    
 
         //Middle left
         if (CurrentX != 0)

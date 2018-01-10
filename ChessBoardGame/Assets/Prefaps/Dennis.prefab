@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33661590057619294}
   - component: {fileID: 65499454885698400}
   - component: {fileID: 23398307192173932}
-  - component: {fileID: 114816036666576592}
   - component: {fileID: 114147080141935368}
   m_Layer: 0
   m_Name: Dennis
@@ -107,14 +106,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBottomteam: 1
---- !u!114 &114816036666576592
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1315410645005332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 

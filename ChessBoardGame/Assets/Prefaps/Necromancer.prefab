@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33746947077631340}
   - component: {fileID: 65194285052094382}
   - component: {fileID: 23289637435666198}
-  - component: {fileID: 114662522263573494}
   - component: {fileID: 114011667241094142}
   m_Layer: 0
   m_Name: Necromancer
@@ -107,14 +106,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBottomteam: 1
---- !u!114 &114662522263573494
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1305396993819028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 

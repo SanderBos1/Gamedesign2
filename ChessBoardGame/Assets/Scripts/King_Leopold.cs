@@ -17,7 +17,7 @@ public class King_Leopold : Movement {
         {
             for (int k = 0; k < 3; k++)
             {
-                if (i > 0 || i < 8)
+                if (i > 0 && i < 8)
                 {
                     c = BoardManager.Instance.Cards[i, j];
                     if (c == null)
@@ -36,7 +36,7 @@ public class King_Leopold : Movement {
         {
             for (int k = 0; k < 3; k++)
             {
-                if (i > 0 || i < 8)
+                if (i > 0 && i < 8)
                 {
                     c = BoardManager.Instance.Cards[i, j];
                     if (c == null)

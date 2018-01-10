@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33980972109201216}
   - component: {fileID: 65462515318025556}
   - component: {fileID: 23654963880460970}
-  - component: {fileID: 114892380175611008}
   - component: {fileID: 114546969946817142}
   m_Layer: 0
   m_Name: Death_Knight
@@ -107,14 +106,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBottomteam: 1
---- !u!114 &114892380175611008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1521461159013588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
