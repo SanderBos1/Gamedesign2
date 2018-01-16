@@ -385,14 +385,17 @@ public class BoardManager : MonoBehaviour{
     private void MoveCamera()
     {
         Vector3 CameraPosition = new Vector3(4, 4, -4);
-        Vector3 CameraPosition2 = new Vector3(-4, -4, 4);
+        Vector3 CameraPosition2 = new Vector3(4, 4, 12);
         if (isBottomTurn)
         {
             Camera.main.transform.position = CameraPosition;
+            Camera.main.transform.eulerAngles = new Vector3(30, 0, 0);
+
         }
         else
         {
             Camera.main.transform.position = CameraPosition2;
+            Camera.main.transform.eulerAngles = new Vector3(30, 180, 0);
 
         }
     }
