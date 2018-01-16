@@ -136,6 +136,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49abcf7a219638e4c8ffd2f57f436db5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  Artic_Archer: 070000000300000003000000
+  Dennis: 140000000500000005000000
+  Death_Knight: 080000000300000003000000
+  Enchantress: 060000000400000002000000
+  King_Leopold: 140000000500000005000000
+  Necromancer: 070000000300000002000000
+  Skeleton_Archer: 050000000200000001000000
+  Warrior: 090000000300000004000000
   cardPrefabs:
   - {fileID: 1315410645005332, guid: cf387f41791b06e44abd802b9b9a1a31, type: 2}
   - {fileID: 1521461159013588, guid: f8c6786feb2c63b40a01bfa623869407, type: 2}
@@ -403,7 +412,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2124407655}
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 4, y: 4, z: -4}
+  m_LocalPosition: {x: 4, y: 5.31, z: 1.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

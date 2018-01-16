@@ -43,6 +43,7 @@ public class BoardManager : MonoBehaviour{
     {
         UpdateSelection();
         DrawChessBoard();
+        MoveCamera();
         if (Input.GetMouseButtonDown(0))
         {
             if (selectionX >= 0 && selectionY >= 0)
@@ -378,6 +379,21 @@ public class BoardManager : MonoBehaviour{
             Debug.DrawLine(
             Vector3.forward * (selectionY + 1) + Vector3.right * selectionX,
             Vector3.forward * selectionY + Vector3.right * (selectionX + 1));
+        }
+    }
+
+    private void MoveCamera()
+    {
+        Vector3 CameraPosition = new Vector3(4, 4, -4);
+        Vector3 CameraPosition2 = new Vector3(-4, -4, 4);
+        if (isBottomTurn)
+        {
+            Camera.main.transform.position = CameraPosition;
+        }
+        else
+        {
+            Camera.main.transform.position = CameraPosition2;
+
         }
     }
 }
