@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -77,17 +77,15 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFilterTypeDirect: 0
-    m_PVRFilterTypeIndirect: 0
-    m_PVRFilterTypeAO: 0
+    m_PVRFiltering: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
-    m_PVRFilteringAtrousPositionSigmaIndirect: 2
-    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_PVRFilteringAtrousColorSigma: 1
+    m_PVRFilteringAtrousNormalSigma: 1
+    m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -109,8 +107,6 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-    debug:
-      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &189516551
 GameObject:
@@ -141,6 +137,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  LightNone: {fileID: 100000, guid: 679dfe65e2f35414c93874daea76873b, type: 2}
+  LightPQR: {fileID: 100000, guid: 0f7600d3dc53e0949987d768e85aceae, type: 2}
+  LightP: {fileID: 100000, guid: 83c25582f4d58df40a91fb1b232e4161, type: 2}
+  LightQ: {fileID: 100000, guid: b1f7dc01adddce64bab1447710a36a64, type: 2}
+  LightR: {fileID: 100000, guid: 1b2ca61124190124189a8bb90692638a, type: 2}
+  LightPQ: {fileID: 100000, guid: 27c9f51423685df4096e363d7e11bba1, type: 2}
+  LightQR: {fileID: 100000, guid: 37d61da84e3ce8546a0b7d333022ed67, type: 2}
+  LightPR: {fileID: 100000, guid: 7ab0da560ef891546a5fc5bd7cddde59, type: 2}
+  DarkNone: {fileID: 100000, guid: 13c33a0e41f7bae40af9d726d5c6e976, type: 2}
+  DarkPQR: {fileID: 100000, guid: 6f86e75b627d7684d90486c327f50cc0, type: 2}
+  DarkP: {fileID: 100000, guid: 3df6bdf5b04bf3a4cb5c8bffb9bcb78d, type: 2}
+  DarkQ: {fileID: 100000, guid: 26ff1f15e402891478e3ab583de30b70, type: 2}
+  DarkR: {fileID: 100000, guid: 5b3a076fb36dc38448968c000ef1ad6a, type: 2}
+  DarkPQ: {fileID: 100000, guid: 7631d0034daddba468c613fe54619108, type: 2}
+  DarkQR: {fileID: 100000, guid: cc6a318a4f70c374b9e97b4fd234aeb3, type: 2}
+  DarkPR: {fileID: 100000, guid: 525aa66c207069048b6fe45a2348a28f, type: 2}
   Artic_Archer: 070000000300000003000000
   Dennis: 140000000500000005000000
   Death_Knight: 080000000300000003000000
@@ -291,7 +303,6 @@ MeshRenderer:
   m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -307,7 +318,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -411,6 +421,7 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+  m_StereoMirrorMode: 0
 --- !u!4 &2124407660
 Transform:
   m_ObjectHideFlags: 0

@@ -6,6 +6,25 @@ public class BoardManager : MonoBehaviour{
 
     public int damage;
 
+    public GameObject LightNone;
+    public GameObject LightPQR;
+    public GameObject LightP;
+    public GameObject LightQ;
+    public GameObject LightR;
+    public GameObject LightPQ;
+    public GameObject LightQR;
+    public GameObject LightPR;
+    public GameObject DarkNone;
+    public GameObject DarkPQR;
+    public GameObject DarkP;
+    public GameObject DarkQ;
+    public GameObject DarkR;
+    public GameObject DarkPQ;
+    public GameObject DarkQR;
+    public GameObject DarkPR;
+    List<GameObject> LightCubes;
+    List<GameObject> DarkCubes;
+
     public List<int> Artic_Archer = new List<int> { 7, 3, 3 };
     public List<int> Dennis = new List<int> { 20, 5, 5 };
     public List<int> Death_Knight = new List<int> { 8, 3, 3 };
@@ -35,6 +54,9 @@ public class BoardManager : MonoBehaviour{
     private void Start()
     {
         Instance = this;
+        LightCubes = new List<GameObject>();
+        DarkCubes = new List<GameObject>();
+        DrawChessBoard();
         SpawnAllMinions();
 
     }
@@ -42,7 +64,7 @@ public class BoardManager : MonoBehaviour{
     private void Update()
     {
         UpdateSelection();
-        DrawChessBoard();
+        DrawSelection();
         MoveCamera();
         if (Input.GetMouseButtonDown(0))
         {
@@ -356,32 +378,55 @@ public class BoardManager : MonoBehaviour{
     //draws chessboard
     private void DrawChessBoard()
     {
-        Vector3 widthLine = Vector3.right * 8;
-        Vector3 heightLine = Vector3.forward * 8;
+        LightCubes.Add(LightNone);
+        LightCubes.Add(LightPQR);
+        LightCubes.Add(LightP);
+        LightCubes.Add(LightQ);
+        LightCubes.Add(LightR);
+        LightCubes.Add(LightPQ);
+        LightCubes.Add(LightQR);
+        LightCubes.Add(LightPR);
 
-        for(int i=0;i <=8; i++)
+        DarkCubes.Add(DarkNone);
+        DarkCubes.Add(DarkPQR);
+        DarkCubes.Add(DarkP);
+        DarkCubes.Add(DarkQ);
+        DarkCubes.Add(DarkR);
+        DarkCubes.Add(DarkPQ);
+        DarkCubes.Add(DarkQR);
+        DarkCubes.Add(DarkPR);
+
+        for (int i = 0; i < 8; i++)
         {
-            Vector3 start = Vector3.forward * i;
-            Debug.DrawLine(start, start + widthLine);
-            for(int j = 0; j <= 8; j++)
+            for (int j = 0; j < 8; j++)
             {
-                start = Vector3.right * j;
-                Debug.DrawLine(start, start + heightLine);
+                float o = 0.5f;
+                if ((i + j) % 2 == 0)
+                {
+                    int rnd = UnityEngine.Random.Range(0, 8);
+                    Object.Instantiate(LightCubes[rnd], new Vector3(i + o, -0.51f, j + o), Quaternion.identity);
+                }
+                else
+                {
+                    int rnd = UnityEngine.Random.Range(0, 8);
+                    Object.Instantiate(DarkCubes[rnd], new Vector3(i + o, -0.51f, j + o), Quaternion.identity);
+                }
             }
-        }
-
-        //Draw the selection
-        if(selectionX >= 0 && selectionY >= 0)
-        {
-            Debug.DrawLine(
-                Vector3.forward * selectionY + Vector3.right * selectionX,
-                Vector3.forward * (selectionY + 1) + Vector3.right * (selectionX + 1));
-            Debug.DrawLine(
-            Vector3.forward * (selectionY + 1) + Vector3.right * selectionX,
-            Vector3.forward * selectionY + Vector3.right * (selectionX + 1));
         }
     }
 
+    private void DrawSelection()
+    {   //Draw the selection
+        if (selectionX >= 0 && selectionY >= 0)
+        {
+            Debug.DrawLine(
+                Vector3.forward* selectionY + Vector3.right* selectionX,
+               Vector3.forward* (selectionY + 1) + Vector3.right* (selectionX + 1));
+            Debug.DrawLine(
+            Vector3.forward* (selectionY + 1) + Vector3.right* selectionX,
+           Vector3.forward* selectionY + Vector3.right* (selectionX + 1));
+        }
+    }
     private void MoveCamera()
     {
         Vector3 CameraPosition = new Vector3(4, 4, -4);
