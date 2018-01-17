@@ -22,8 +22,8 @@ public class BoardManager : MonoBehaviour{
     public GameObject DarkPQ;
     public GameObject DarkQR;
     public GameObject DarkPR;
-    List<GameObject> LightCubes;
-    List<GameObject> DarkCubes;
+    List<GameObject> Cubes;
+    int[,] Grid;
 
     public List<int> Artic_Archer = new List<int> { 7, 3, 3 };
     public List<int> Dennis = new List<int> { 20, 5, 5 };
@@ -54,8 +54,8 @@ public class BoardManager : MonoBehaviour{
     private void Start()
     {
         Instance = this;
-        LightCubes = new List<GameObject>();
-        DarkCubes = new List<GameObject>();
+        Cubes = new List<GameObject>();
+        Grid = new int[8,8];
         DrawChessBoard();
         SpawnAllMinions();
 
@@ -110,37 +110,87 @@ public class BoardManager : MonoBehaviour{
 
                 //Find the attacker and set the damage to the attacker's corresponding damage
                 var attacker = Cards[selectedCard.CurrentX, selectedCard.CurrentY];
+                int i = selectedCard.CurrentX;
+                int j = selectedCard.CurrentY;
 
-                if(attacker.GetType() == typeof(Artic_Archer)){
+                if (attacker.GetType() == typeof(Artic_Archer)){
                     damage = Artic_Archer[1];
+                    Debug.Log(damage);
+                    if (Grid[i,j] == 0)
+                    {
+                        damage *= 2;
+                        Debug.Log(damage);
+                    }
                 }
 
                 else if (attacker.GetType() == typeof(Dennis)){
                     damage = Dennis[1];
+                    Debug.Log(damage);
+                    if (Grid[i, j] == 1 | Grid[i, j] == 5 | Grid[i, j] == 7)
+                    {
+                        damage *= 2;
+                        Debug.Log(damage);
+                    }
                 }
 
                 else if (attacker.GetType() == typeof(Death_Knight)){
                     damage = Death_Knight[1];
+                    Debug.Log(damage);
+                    if (Grid[i, j] == 0 | Grid[i, j] == 7)
+                    {
+                        damage *= 2;
+                        Debug.Log(damage);
+                    }
                 }
 
                 else if (attacker.GetType() == typeof(Enchantress)){
                     damage = Enchantress[1];
+                    Debug.Log(damage);
+                    if (Grid[i, j] == 0 | Grid[i, j] == 4)
+                    {
+                        damage *= 2;
+                        Debug.Log(damage);
+                    }
                 }
 
                 else if (attacker.GetType() == typeof(King_Leopold)){
                     damage = King_Leopold[1];
+                    Debug.Log(damage);
+                    if (Grid[i, j] == 5 | Grid[i, j] == 3 | Grid[i, j] == 0) 
+                    {
+                        damage *= 2;
+                        Debug.Log(damage);
+                    }
                 }
 
                 else if (attacker.GetType() == typeof(Necromancer)){
                     damage = Necromancer[1];
+                    Debug.Log(damage);
+                    if (Grid[i, j] == 0 | Grid[i, j] == 4)
+                    {
+                        damage *= 2;
+                        Debug.Log(damage);
+                    }
                 }
 
                 else if (attacker.GetType() == typeof(Skeleton_Archer)){
                     damage = Skeleton_Archer[1];
+                    Debug.Log(damage);
+                    if (Grid[i, j] == 0)
+                    {
+                        damage *= 2;
+                        Debug.Log(damage);
+                    }
                 }
 
                 else if (attacker.GetType() == typeof(Warrior)){
                     damage = Warrior[1];
+                    Debug.Log(damage);
+                    if (Grid[i, j] == 0 | Grid[i, j] == 7)
+                    {
+                        damage *= 2;
+                        Debug.Log(damage);
+                    }
                 }
 
                 //Now find the victim
@@ -378,23 +428,22 @@ public class BoardManager : MonoBehaviour{
     //draws chessboard
     private void DrawChessBoard()
     {
-        LightCubes.Add(LightNone);
-        LightCubes.Add(LightPQR);
-        LightCubes.Add(LightP);
-        LightCubes.Add(LightQ);
-        LightCubes.Add(LightR);
-        LightCubes.Add(LightPQ);
-        LightCubes.Add(LightQR);
-        LightCubes.Add(LightPR);
-
-        DarkCubes.Add(DarkNone);
-        DarkCubes.Add(DarkPQR);
-        DarkCubes.Add(DarkP);
-        DarkCubes.Add(DarkQ);
-        DarkCubes.Add(DarkR);
-        DarkCubes.Add(DarkPQ);
-        DarkCubes.Add(DarkQR);
-        DarkCubes.Add(DarkPR);
+        Cubes.Add(LightNone);
+        Cubes.Add(LightPQR);
+        Cubes.Add(LightP);
+        Cubes.Add(LightQ);
+        Cubes.Add(LightR);
+        Cubes.Add(LightPQ);
+        Cubes.Add(LightQR);
+        Cubes.Add(LightPR);
+        Cubes.Add(DarkNone);
+        Cubes.Add(DarkPQR);
+        Cubes.Add(DarkP);
+        Cubes.Add(DarkQ);
+        Cubes.Add(DarkR);
+        Cubes.Add(DarkPQ);
+        Cubes.Add(DarkQR);
+        Cubes.Add(DarkPR);
 
         for (int i = 0; i < 8; i++)
         {
@@ -404,12 +453,14 @@ public class BoardManager : MonoBehaviour{
                 if ((i + j) % 2 == 0)
                 {
                     int rnd = UnityEngine.Random.Range(0, 8);
-                    Object.Instantiate(LightCubes[rnd], new Vector3(i + o, -0.51f, j + o), Quaternion.identity);
+                    Grid[i, j] = rnd;
+                    Object.Instantiate(Cubes[rnd], new Vector3(i + o, -0.51f, j + o), Quaternion.identity);
                 }
                 else
                 {
-                    int rnd = UnityEngine.Random.Range(0, 8);
-                    Object.Instantiate(DarkCubes[rnd], new Vector3(i + o, -0.51f, j + o), Quaternion.identity);
+                    int rnd = UnityEngine.Random.Range(8, 15);
+                    Grid[i, j] = rnd - 8;
+                    Object.Instantiate(Cubes[rnd], new Vector3(i + o, -0.51f, j + o), Quaternion.identity);
                 }
             }
         }
