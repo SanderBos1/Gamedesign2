@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoardManager : MonoBehaviour{
+public class BoardManager : MonoBehaviour
+{
 
     public int damage;
 
@@ -35,8 +36,8 @@ public class BoardManager : MonoBehaviour{
     public List<int> Warrior = new List<int> { 9, 3, 4 };
 
     public static BoardManager Instance { set; get; }
-    public bool[,] allowedMoves { set; get;}
-    public Movement[,] Cards {set; get;}
+    public bool[,] allowedMoves { set; get; }
+    public Movement[,] Cards { set; get; }
     private Movement selectedCard;
 
     private const float TILE_SIZE = 1.0f;
@@ -55,17 +56,16 @@ public class BoardManager : MonoBehaviour{
     {
         Instance = this;
         Cubes = new List<GameObject>();
-        Grid = new int[8,8];
+        Grid = new int[8, 8];
         DrawChessBoard();
         SpawnAllMinions();
-
+        MoveCamera();
     }
 
     private void Update()
     {
         UpdateSelection();
         DrawSelection();
-        MoveCamera();
         if (Input.GetMouseButtonDown(0))
         {
             if (selectionX >= 0 && selectionY >= 0)
@@ -80,18 +80,18 @@ public class BoardManager : MonoBehaviour{
                     //Move the card
                     MoveCards(selectionX, selectionY);
                 }
-                }
             }
         }
-    
+    }
+
 
 
     private void SelectCards(int x, int y)
     {
-        if(Cards[x, y] == null)
-        return;
-        if (Cards[x, y].isBottomteam!= isBottomTurn)
-        return;
+        if (Cards[x, y] == null)
+            return;
+        if (Cards[x, y].isBottomteam != isBottomTurn)
+            return;
 
         allowedMoves = Cards[x, y].PossibleMove();
         selectedCard = Cards[x, y];
@@ -104,7 +104,7 @@ public class BoardManager : MonoBehaviour{
         {
             Movement c = Cards[x, y];
 
-            if(c != null && c.isBottomteam != isBottomTurn)
+            if (c != null && c.isBottomteam != isBottomTurn)
             {
                 //From here starts health manage things
 
@@ -113,17 +113,21 @@ public class BoardManager : MonoBehaviour{
                 int i = selectedCard.CurrentX;
                 int j = selectedCard.CurrentY;
 
-                if (attacker.GetType() == typeof(Artic_Archer)){
+                iTween.ScaleFrom(attacker.gameObject, new Vector3(1.6f, 3, 1), 2.5f);
+
+                if (attacker.GetType() == typeof(Artic_Archer))
+                {
                     damage = Artic_Archer[1];
                     Debug.Log(damage);
-                    if (Grid[i,j] == 0)
+                    if (Grid[i, j] == 0)
                     {
                         damage *= 2;
                         Debug.Log(damage);
                     }
                 }
 
-                else if (attacker.GetType() == typeof(Dennis)){
+                else if (attacker.GetType() == typeof(Dennis))
+                {
                     damage = Dennis[1];
                     Debug.Log(damage);
                     if (Grid[i, j] == 1 | Grid[i, j] == 5 | Grid[i, j] == 7)
@@ -133,7 +137,8 @@ public class BoardManager : MonoBehaviour{
                     }
                 }
 
-                else if (attacker.GetType() == typeof(Death_Knight)){
+                else if (attacker.GetType() == typeof(Death_Knight))
+                {
                     damage = Death_Knight[1];
                     Debug.Log(damage);
                     if (Grid[i, j] == 0 | Grid[i, j] == 7)
@@ -143,7 +148,8 @@ public class BoardManager : MonoBehaviour{
                     }
                 }
 
-                else if (attacker.GetType() == typeof(Enchantress)){
+                else if (attacker.GetType() == typeof(Enchantress))
+                {
                     damage = Enchantress[1];
                     Debug.Log(damage);
                     if (Grid[i, j] == 0 | Grid[i, j] == 4)
@@ -153,17 +159,19 @@ public class BoardManager : MonoBehaviour{
                     }
                 }
 
-                else if (attacker.GetType() == typeof(King_Leopold)){
+                else if (attacker.GetType() == typeof(King_Leopold))
+                {
                     damage = King_Leopold[1];
                     Debug.Log(damage);
-                    if (Grid[i, j] == 5 | Grid[i, j] == 3 | Grid[i, j] == 0) 
+                    if (Grid[i, j] == 5 | Grid[i, j] == 3 | Grid[i, j] == 0)
                     {
                         damage *= 2;
                         Debug.Log(damage);
                     }
                 }
 
-                else if (attacker.GetType() == typeof(Necromancer)){
+                else if (attacker.GetType() == typeof(Necromancer))
+                {
                     damage = Necromancer[1];
                     Debug.Log(damage);
                     if (Grid[i, j] == 0 | Grid[i, j] == 4)
@@ -173,7 +181,8 @@ public class BoardManager : MonoBehaviour{
                     }
                 }
 
-                else if (attacker.GetType() == typeof(Skeleton_Archer)){
+                else if (attacker.GetType() == typeof(Skeleton_Archer))
+                {
                     damage = Skeleton_Archer[1];
                     Debug.Log(damage);
                     if (Grid[i, j] == 0)
@@ -183,7 +192,8 @@ public class BoardManager : MonoBehaviour{
                     }
                 }
 
-                else if (attacker.GetType() == typeof(Warrior)){
+                else if (attacker.GetType() == typeof(Warrior))
+                {
                     damage = Warrior[1];
                     Debug.Log(damage);
                     if (Grid[i, j] == 0 | Grid[i, j] == 7)
@@ -191,96 +201,142 @@ public class BoardManager : MonoBehaviour{
                         damage *= 2;
                         Debug.Log(damage);
                     }
+
                 }
 
                 //Now find the victim
-                if (c.GetType() == typeof(Artic_Archer)){
-                    if(dodge(Artic_Archer[2]) == false){
+                if (c.GetType() == typeof(Artic_Archer))
+                {
+                    if (dodge(Artic_Archer[2]) == false)
+                    {
                         Artic_Archer[0] = Artic_Archer[0] - damage;
                         Debug.Log("Artic_Archer new health: " + Artic_Archer[0]);
 
-                        if (Artic_Archer[0] <= 0){
+                        if (Artic_Archer[0] <= 0)
+                        {
                             Debug.Log("Victim died");
                             //remove component
                             activeCards.Remove(c.gameObject);
                             Destroy(c.gameObject);
                         }
                     }
+                    else
+                    {
+                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 4f);
+                    }
                 }
 
-                else if (c.GetType() == typeof(Death_Knight)){
-                    if (dodge(Death_Knight[2]) == false){
+                else if (c.GetType() == typeof(Death_Knight))
+                {
+                    if (dodge(Death_Knight[2]) == false)
+                    {
                         Death_Knight[0] = Death_Knight[0] - damage;
                         Debug.Log("new health: " + Death_Knight[0]);
 
-                        if (Death_Knight[0] <= 0){
+                        if (Death_Knight[0] <= 0)
+                        {
                             Debug.Log("Victim died");
                             //remove component
                             activeCards.Remove(c.gameObject);
                             Destroy(c.gameObject);
                         }
                     }
+                    else
+                    {
+                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 4f);
+                    }
                 }
 
-                else if (c.GetType() == typeof(Enchantress)){
-                    if (dodge(Enchantress[2]) == false){
+                else if (c.GetType() == typeof(Enchantress))
+                {
+                    if (dodge(Enchantress[2]) == false)
+                    {
                         Enchantress[0] = Enchantress[0] - damage;
                         Debug.Log("new health: " + Enchantress[0]);
 
-                        if (Enchantress[0] <= 0){
+                        if (Enchantress[0] <= 0)
+                        {
                             Debug.Log("Victim died");
                             //remove component
                             activeCards.Remove(c.gameObject);
                             Destroy(c.gameObject);
                         }
                     }
+                    else
+                    {
+                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 4f);
+                    }
                 }
 
-                else if (c.GetType() == typeof(Necromancer)){
-                    if (dodge(Necromancer[2]) == false){
+                else if (c.GetType() == typeof(Necromancer))
+                {
+                    if (dodge(Necromancer[2]) == false)
+                    {
                         Necromancer[0] = Necromancer[0] - damage;
 
-                        if (Necromancer[0] <= 0){
+                        if (Necromancer[0] <= 0)
+                        {
                             Debug.Log("Victim died");
                             //remove component
                             activeCards.Remove(c.gameObject);
                             Destroy(c.gameObject);
                         }
                     }
+                    else
+                    {
+                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 4f);
+                    }
                 }
 
-                else if (c.GetType() == typeof(Skeleton_Archer)){
-                    if (dodge(Skeleton_Archer[2]) == false){
+                else if (c.GetType() == typeof(Skeleton_Archer))
+                {
+                    if (dodge(Skeleton_Archer[2]) == false)
+                    {
                         Skeleton_Archer[0] = Skeleton_Archer[0] - damage;
 
-                        if (Skeleton_Archer[0] <= 0){
+                        if (Skeleton_Archer[0] <= 0)
+                        {
                             Debug.Log("Victim died");
                             //remove component
                             activeCards.Remove(c.gameObject);
                             Destroy(c.gameObject);
                         }
                     }
+                    else
+                    {
+                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 4f);
+                    }
                 }
 
-                else if (c.GetType() == typeof(Warrior)){
-                    if (dodge(Warrior[2]) == false){
+                else if (c.GetType() == typeof(Warrior))
+                {
+                    if (dodge(Warrior[2]) == false)
+                    {
                         Warrior[0] = Warrior[0] - damage;
 
-                        if (Warrior[0] <= 0){
+                        if (Warrior[0] <= 0)
+                        {
                             Debug.Log("Victim died");
                             //remove component
                             activeCards.Remove(c.gameObject);
                             Destroy(c.gameObject);
                         }
                     }
+                    else
+                    {
+                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 4f);
+                    }
                 }
 
-                else if (c.GetType() == typeof(Dennis)){
-                    if (dodge(Dennis[2]) == false){
+                else if (c.GetType() == typeof(Dennis))
+                {
+                    if (dodge(Dennis[2]) == false)
+                    {
                         Dennis[0] = Dennis[0] - damage;
                         Debug.Log("Dennis new health: " + Dennis[0]);
 
-                        if (Dennis[0] <= 0){
+                        if (Dennis[0] <= 0)
+                        {
                             Debug.Log("Victim died, GAME ENDS");
                             activeCards.Remove(c.gameObject);
                             Destroy(c.gameObject);
@@ -288,21 +344,32 @@ public class BoardManager : MonoBehaviour{
                             return;
                         }
                     }
+                    else
+                    {
+                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 2.5f);
+                    }
 
                 }
 
-                else if (c.GetType() == typeof(King_Leopold)){
-                    if (dodge(King_Leopold[2]) == false){
+                else if (c.GetType() == typeof(King_Leopold))
+                {
+                    if (dodge(King_Leopold[2]) == false)
+                    {
                         King_Leopold[0] = King_Leopold[0] - damage;
                         Debug.Log("King Leopold new health: " + King_Leopold[0]);
 
-                        if (King_Leopold[0] <= 0){
+                        if (King_Leopold[0] <= 0)
+                        {
                             Debug.Log("Victim died, GAME ENDS");
                             activeCards.Remove(c.gameObject);
                             Destroy(c.gameObject);
                             //GAME ENDS
                             return;
                         }
+                    }
+                    else
+                    {
+                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 4f);
                     }
                 }
 
@@ -322,14 +389,18 @@ public class BoardManager : MonoBehaviour{
                 }
                 */
                 isBottomTurn = !isBottomTurn;
+                StartCoroutine(Wait(0.25f));
             }
 
-            else {
+            else
+            {
                 Cards[selectedCard.CurrentX, selectedCard.CurrentY] = null;
-                selectedCard.transform.position = GetTileCenter(x, y);
+               // selectedCard.transform.position = GetTileCenter(x, y);
+                iTween.MoveTo(selectedCard.gameObject, GetTileCenter(x, y), 1);
                 selectedCard.SetPosition(x, y);
                 Cards[x, y] = selectedCard;
                 isBottomTurn = !isBottomTurn;
+                StartCoroutine(Wait(0.25f));
             }
         }
         BoardHighLights.Instance.HideHighlights();
@@ -337,16 +408,19 @@ public class BoardManager : MonoBehaviour{
     }
 
     //calcutales if victim dodges incoming attack and returns true if it did
-    private bool dodge(int defence){
+    private bool dodge(int defence)
+    {
 
         int dodge = UnityEngine.Random.Range(1, 10);
-        if (dodge < defence){
+        if (dodge < defence)
+        {
             //the victim dodged the attack
             Debug.Log("Victim dodged!");
             return true;
         }
 
-        else{
+        else
+        {
             return false;
         }
     }
@@ -355,13 +429,14 @@ public class BoardManager : MonoBehaviour{
     //mousepointing
     private void UpdateSelection()
     {
-            //checks if theirs a main camera
+        //checks if theirs a main camera
         if (!Camera.main)
             return;
         RaycastHit hit;
 
         //checks which point in the world it is
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 50.0f, LayerMask.GetMask("ChessPlane"))){
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 50.0f, LayerMask.GetMask("ChessPlane")))
+        {
 
             selectionX = (int)hit.point.x;
             selectionY = (int)hit.point.z;
@@ -371,14 +446,14 @@ public class BoardManager : MonoBehaviour{
             selectionX = -1;
             selectionY = -1;
         }
-        
+
     }
-    
+
 
     //spawns the minions in the corerct place in the world
     private void SpawnMinions(int index, int x, int y)
     {
-        GameObject go = Instantiate(cardPrefabs[index], GetTileCenter(x,y), orientation) as GameObject;
+        GameObject go = Instantiate(cardPrefabs[index], GetTileCenter(x, y), orientation) as GameObject;
         go.transform.SetParent(transform);
         Cards[x, y] = go.GetComponent<Movement>();
         Cards[x, y].SetPosition(x, y); //current position in the world
@@ -471,28 +546,41 @@ public class BoardManager : MonoBehaviour{
         if (selectionX >= 0 && selectionY >= 0)
         {
             Debug.DrawLine(
-                Vector3.forward* selectionY + Vector3.right* selectionX,
-               Vector3.forward* (selectionY + 1) + Vector3.right* (selectionX + 1));
+                Vector3.forward * selectionY + Vector3.right * selectionX,
+               Vector3.forward * (selectionY + 1) + Vector3.right * (selectionX + 1));
             Debug.DrawLine(
-            Vector3.forward* (selectionY + 1) + Vector3.right* selectionX,
-           Vector3.forward* selectionY + Vector3.right* (selectionX + 1));
+            Vector3.forward * (selectionY + 1) + Vector3.right * selectionX,
+           Vector3.forward * selectionY + Vector3.right * (selectionX + 1));
         }
     }
+    private IEnumerator Wait(float n)
+    {
+        yield return new WaitForSeconds(n);
+        MoveCamera();
+    }
+
     private void MoveCamera()
     {
-        Vector3 CameraPosition = new Vector3(4, 4, -4);
-        Vector3 CameraPosition2 = new Vector3(4, 4, 12);
+        Vector3 CameraPosition = new Vector3(4, 6, -1);
+        Vector3 CameraPosition2 = new Vector3(4, 6, 9);
+
+        Vector3 CameraRotation = new Vector3(55, 0, 0);
+        Vector3 CameraRotation2 = new Vector3(55, 180, 0);
         if (isBottomTurn)
         {
-            Camera.main.transform.position = CameraPosition;
-            Camera.main.transform.eulerAngles = new Vector3(30, 0, 0);
+            iTween.MoveTo(Camera.main.gameObject, CameraPosition, 1);
+            iTween.RotateTo(Camera.main.gameObject, CameraRotation, 1);
+
 
         }
         else
         {
-            Camera.main.transform.position = CameraPosition2;
-            Camera.main.transform.eulerAngles = new Vector3(30, 180, 0);
+            iTween.MoveTo(Camera.main.gameObject, CameraPosition2, 1);
+            iTween.RotateTo(Camera.main.gameObject, CameraRotation2, 1);
 
         }
     }
+
+
+
 }
