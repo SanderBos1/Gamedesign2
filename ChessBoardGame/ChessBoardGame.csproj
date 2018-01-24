@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\Dennis.cs" />
     <Compile Include="Assets\Scripts\Enchantress.cs" />
     <Compile Include="Assets\Scripts\King_Leopold.cs" />
+    <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\Necromancer.cs" />
     <Compile Include="Assets\Scripts\Skeleton_Archer.cs" />
