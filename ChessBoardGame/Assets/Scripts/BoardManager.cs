@@ -113,7 +113,7 @@ public class BoardManager : MonoBehaviour
                 int i = selectedCard.CurrentX;
                 int j = selectedCard.CurrentY;
 
-                iTween.ScaleFrom(attacker.gameObject, new Vector3(1.6f, 3, 1), 2.5f);
+                iTween.MoveFrom(attacker.gameObject, GetTileCenter(x, y), 2);
 
                 if (attacker.GetType() == typeof(Artic_Archer))
                 {
@@ -222,7 +222,7 @@ public class BoardManager : MonoBehaviour
                     }
                     else
                     {
-                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 4f);
+                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 5);
                     }
                 }
 
@@ -243,7 +243,7 @@ public class BoardManager : MonoBehaviour
                     }
                     else
                     {
-                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 4f);
+                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 5);
                     }
                 }
 
@@ -264,7 +264,7 @@ public class BoardManager : MonoBehaviour
                     }
                     else
                     {
-                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 4f);
+                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 5);
                     }
                 }
 
@@ -284,7 +284,7 @@ public class BoardManager : MonoBehaviour
                     }
                     else
                     {
-                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 4f);
+                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 5);
                     }
                 }
 
@@ -304,7 +304,7 @@ public class BoardManager : MonoBehaviour
                     }
                     else
                     {
-                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 4f);
+                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 5);
                     }
                 }
 
@@ -324,7 +324,7 @@ public class BoardManager : MonoBehaviour
                     }
                     else
                     {
-                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 4f);
+                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 5);
                     }
                 }
 
@@ -346,7 +346,7 @@ public class BoardManager : MonoBehaviour
                     }
                     else
                     {
-                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 2.5f);
+                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 5);
                     }
 
                 }
@@ -369,33 +369,19 @@ public class BoardManager : MonoBehaviour
                     }
                     else
                     {
-                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 4f);
+                        iTween.ScaleFrom(c.gameObject, new Vector3(0.4f, 0.75f, 0.25f), 5);
                     }
                 }
-
-
-
+          
                 //END OF HEALTH MANAGE
 
-                /*REMOVE THIS PART LATER, IT IS NOT NEEDED ANY MORE
-                //destory a card
-                activeCards.Remove(c.gameObject);
-                Destroy(c.gameObject);
-                //if it is the king
-                if(c.GetType () == typeof(Dennis))
-                {
-                    //end game
-                    return;
-                }
-                */
                 isBottomTurn = !isBottomTurn;
-                StartCoroutine(Wait(0.25f));
+                StartCoroutine(Wait(0.4f));
             }
 
             else
             {
                 Cards[selectedCard.CurrentX, selectedCard.CurrentY] = null;
-               // selectedCard.transform.position = GetTileCenter(x, y);
                 iTween.MoveTo(selectedCard.gameObject, GetTileCenter(x, y), 1);
                 selectedCard.SetPosition(x, y);
                 Cards[x, y] = selectedCard;
@@ -568,15 +554,15 @@ public class BoardManager : MonoBehaviour
         Vector3 CameraRotation2 = new Vector3(55, 180, 0);
         if (isBottomTurn)
         {
-            iTween.MoveTo(Camera.main.gameObject, CameraPosition, 1);
-            iTween.RotateTo(Camera.main.gameObject, CameraRotation, 1);
+            iTween.MoveTo(Camera.main.gameObject, CameraPosition, 2);
+            iTween.RotateTo(Camera.main.gameObject, CameraRotation, 2);
 
 
         }
         else
         {
-            iTween.MoveTo(Camera.main.gameObject, CameraPosition2, 1);
-            iTween.RotateTo(Camera.main.gameObject, CameraRotation2, 1);
+            iTween.MoveTo(Camera.main.gameObject, CameraPosition2, 2);
+            iTween.RotateTo(Camera.main.gameObject, CameraRotation2, 2);
 
         }
     }
